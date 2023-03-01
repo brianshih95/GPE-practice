@@ -20,22 +20,11 @@ int main(){
             break;
 
         vector<string> v;
+        stringstream ss(expr);
         string tmp;
-        for(int i=expr.size()-1; i>=0; i--){
-            if(expr[i] == ' '){
-                if(tmp.empty())
-                    continue;
-                else{
-                    reverse(tmp.begin(), tmp.end());
-                    v.push_back(tmp);
-                    tmp = "";
-                }
-            }
-            else if(isdigit(expr[i]))
-                tmp += expr[i];
-            else if(isoperator(expr[i]))
-                v.push_back(string(1, expr[i]));    // 將char轉string可用string(1, c)
-        }
+        while(ss >> tmp)
+            v.push_back(tmp);
+        reverse(v.begin(), v.end());
 
         stack<int> s;
         int num1, num2;
